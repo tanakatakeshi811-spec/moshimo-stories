@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>もしも〇〇ストーリー</title>
+<meta name="description" content="史実をもとにした「もしも」の世界線を、縦型ショート動画で。ストーリーを選んで第1話から見られます。">
+<meta name="theme-color" content="#0E0D10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="もしも〇〇ストーリー">
+<meta property="og:description" content="史実をもとにした「もしも」の世界線を、縦型ショート動画で。">
+<meta property="og:url" content="https://tanakatakeshi811-spec.github.io/moshimo-stories/">
+<meta property="og:image" content="https://tanakatakeshi811-spec.github.io/moshimo-stories/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0D10'/%3E%3Ccircle cx='21' cy='32' r='11' fill='none' stroke='%23D9473C' stroke-width='5'/%3E%3Ccircle cx='43' cy='32' r='11' fill='none' stroke='%23D9473C' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E0D10; --bg2:#141217; --card:#1B181E; --card2:#221E26; --line:#2E2930;
+  --text:#F2EEE6; --sub:#B9B2A8; --mute:#8A847C;
+  --red:#D9473C; --red2:#B8362D; --amber:#EBA43C; --green:#3E9A5E;
+  --radius:16px; --sans:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic UI",sans-serif;
+  --serif:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body{min-height:100dvh;line-height:1.7}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+img{display:block;max-width:100%}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:8px}
+.wrap{width:min(1120px,100%);margin:0 auto;padding:0 16px}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- header ---------- */
+.topbar{position:sticky;top:0;z-index:20;background:linear-gradient(#0E0D10F2,#0E0D10CC);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #ffffff10}
+.topbar .wrap{display:flex;align-items:center;gap:12px;height:60px}
+.logo{display:flex;align-items:baseline;gap:2px;font-family:var(--serif);font-weight:900;font-size:20px;letter-spacing:.02em;white-space:nowrap}
+.logo .mo{color:var(--amber)}
+.logo .oo{display:inline-flex;gap:3px;margin:0 3px;transform:translateY(2px)}
+.logo .oo i{width:15px;height:15px;border:3px solid var(--red);border-radius:50%;display:block}
+.topbar .sp{flex:1}
+.topbar nav a{font-size:14px;color:var(--sub);padding:8px 10px;border-radius:10px}
+.topbar nav a:hover{color:var(--text);background:#ffffff0d}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid #ffffff0d}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 90% at 50% 0%,#3A1E22 0%,#0E0D10 70%)}
+.hero .city{position:absolute;left:0;right:0;bottom:0;width:100%;height:46%;opacity:.9}
+.hero .wrap{position:relative;padding-top:56px;padding-bottom:64px;text-align:center}
+.hero .kicker{font-family:var(--serif);font-weight:900;color:var(--amber);letter-spacing:.5em;font-size:clamp(18px,4.4vw,26px);margin-left:.5em}
+.hero h1{margin:6px 0 0;font-family:var(--serif);font-weight:900;font-size:clamp(40px,10vw,84px);line-height:1.15;letter-spacing:.02em}
+.hero h1 .oo{display:inline-flex;gap:.08em;vertical-align:-.06em;margin-right:.04em}
+.hero h1 .oo i{width:.78em;height:.78em;border:.11em solid var(--red);border-radius:50%;display:block}
+.hero .bar{width:min(420px,70%);height:5px;background:var(--red);margin:22px auto 18px}
+.hero p{margin:0 auto;max-width:34em;color:#E3DDD2;font-weight:500;font-size:clamp(14px,3.6vw,17px)}
+.latest{margin:28px auto 0;display:inline-flex;align-items:center;gap:12px;background:#ffffff0f;border:1px solid #ffffff1a;padding:8px 8px 8px 14px;border-radius:999px;font-size:14px;max-width:100%}
+.latest b{color:var(--amber);font-weight:900;white-space:nowrap}
+.latest span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.latest button{background:var(--red);border-radius:999px;padding:6px 14px;font-weight:700;white-space:nowrap}
+
+/* ---------- sections ---------- */
+section{padding:44px 0}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin:0 0 18px}
+.sec-h h2{margin:0;font-family:var(--serif);font-weight:900;font-size:26px}
+.sec-h small{color:var(--mute);font-size:13px}
+
+/* ---------- story cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s}
+.scard:hover{transform:translateY(-3px);border-color:#4A3F45}
+.scard .cov{position:relative;aspect-ratio:3/4;overflow:hidden;background:#000}
+.scard .cov img{width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.scard .cov .badges{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:#000000a8;border:1px solid #ffffff24;white-space:nowrap}
+.badge.red{background:var(--red);border-color:var(--red)}
+.badge.amber{background:var(--amber);border-color:var(--amber);color:#26180A}
+.badge.green{background:var(--green);border-color:var(--green)}
+.scard .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.scard h3{margin:0;font-family:var(--serif);font-weight:900;font-size:20px;line-height:1.45}
+.scard p{margin:0;color:var(--sub);font-size:14px}
+.scard .acts{display:flex;gap:8px;margin-top:auto;padding-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:12px;font-weight:700;font-size:15px;white-space:nowrap}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:#E4554A}
+.btn.ghost{background:#ffffff10;border:1px solid #ffffff22}
+.btn.ghost:hover{background:#ffffff1a}
+.btn.wide{flex:1}
+.btn svg{width:18px;height:18px}
+.scard.soon{border-style:dashed;background:transparent;align-items:center;justify-content:center;text-align:center;min-height:240px;color:var(--mute);padding:24px}
+.scard.soon .oo{display:flex;gap:6px;justify-content:center;margin-bottom:10px}
+.scard.soon .oo i{width:26px;height:26px;border:4px solid #4A4048;border-radius:50%;display:block}
+
+/* ---------- story page ---------- */
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--sub);font-size:14px;margin:20px 0 4px;padding:6px 8px 6px 2px;border-radius:8px}
+.back:hover{color:var(--text)}
+.shero{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:28px;align-items:start;padding:12px 0 8px}
+.shero .cov{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);aspect-ratio:9/16;background:#000}
+.shero .cov img{width:100%;height:100%;object-fit:cover}
+.shero h1{margin:4px 0 10px;font-family:var(--serif);font-weight:900;font-size:clamp(28px,5vw,40px);line-height:1.35}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.syn{color:#E3DDD2;margin:0 0 14px}
+.note{color:var(--mute);font-size:13px;border-left:3px solid var(--red);padding:2px 0 2px 12px;margin:0 0 18px}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.cta .btn{height:50px;font-size:16px}
+.prog-line{font-size:13px;color:var(--sub);margin-top:10px}
+
+.eps{display:flex;flex-direction:column;gap:10px}
+.ep{display:grid;grid-template-columns:76px 1fr auto;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px 10px 10px;text-align:left;width:100%;transition:background .15s,border-color .15s}
+.ep:hover{background:var(--card2);border-color:#4A3F45}
+.ep .th{position:relative;width:76px;aspect-ratio:9/16;border-radius:10px;overflow:hidden;background:#000}
+.ep .th img{width:100%;height:100%;object-fit:cover}
+.ep .th .pbar{position:absolute;left:0;right:0;bottom:0;height:4px;background:#ffffff33}
+.ep .th .pbar i{display:block;height:100%;background:var(--red)}
+.ep .th .play{position:absolute;inset:0;display:grid;place-items:center;background:#00000040;opacity:0;transition:opacity .15s}
+.ep:hover .th .play{opacity:1}
+.ep .th .play svg{width:30px;height:30px}
+.ep .no{font-size:13px;color:var(--amber);font-weight:900;letter-spacing:.05em}
+.ep .tt{font-family:var(--serif);font-weight:900;font-size:19px;line-height:1.4}
+.ep .ds{font-size:13px;color:var(--sub);margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ep .rt{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:13px;color:var(--mute);white-space:nowrap}
+.ep .done{color:#7FD39A;font-weight:700}
+.ep.soon{opacity:.55;cursor:default}
+.ep.soon:hover{background:var(--card);border-color:var(--line)}
+.ep.soon .th{display:grid;place-items:center;background:repeating-linear-gradient(135deg,#1E1A20 0 10px,#241F26 10px 20px)}
+.ep.soon .th b{font-size:11px;color:var(--mute);writing-mode:vertical-rl;letter-spacing:.2em}
+
+.cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.chara{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.chara img{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none}
+.chara b{font-family:var(--serif);font-weight:900;font-size:17px}
+.chara span{display:block;font-size:13px;color:var(--sub);line-height:1.6}
+
+footer{border-top:1px solid #ffffff10;margin-top:24px;padding:28px 0 calc(36px + var(--safe-b));color:var(--mute);font-size:12px}
+footer p{margin:4px 0}
+
+/* ---------- player ---------- */
+.player{position:fixed;inset:0;z-index:100;background:#000;display:flex;justify-content:center;align-items:stretch}
+.player[hidden]{display:none}
+.stage{position:relative;height:100dvh;width:min(100vw,calc(100dvh * 9 / 16));background:#000;overflow:hidden;touch-action:none}
+.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.tap{position:absolute;inset:0}
+.bigplay{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:#000000a0;display:grid;place-items:center;border:2px solid #ffffff40;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:scale(.9)}
+.bigplay.show{opacity:1;pointer-events:auto;transform:scale(1)}
+.bigplay svg{width:38px;height:38px;margin-left:5px}
+.spin{position:absolute;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:4px solid #ffffff30;border-top-color:#fff;animation:spin 0.9s linear infinite;display:none;pointer-events:none}
+.spin.show{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ui{transition:opacity .25s}
+.player.idle .ui{opacity:0;pointer-events:none}
+.ptop{position:absolute;z-index:3;left:0;right:0;top:0;padding:calc(10px + var(--safe-t)) 10px 30px;display:flex;align-items:center;gap:6px;background:linear-gradient(#000000c0,#00000000)}
+.ptitle{flex:1;min-width:0;line-height:1.35}
+.ptitle .s{font-size:12px;color:#ffffffb0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ptitle .e{font-family:var(--serif);font-weight:900;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ibtn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none}
+.ibtn:hover{background:#ffffff1a}
+.ibtn svg{width:24px;height:24px}
+.pbot{position:absolute;left:0;right:0;bottom:0;padding:34px 12px calc(10px + var(--safe-b));background:linear-gradient(#00000000,#000000c8)}
+.seek{position:relative;height:22px;display:flex;align-items:center;cursor:pointer;touch-action:none}
+.seek .tr{position:relative;width:100%;height:4px;background:#ffffff38;border-radius:4px;overflow:hidden;transition:height .15s}
+.seek:hover .tr,.seek.drag .tr{height:6px}
+.seek .bf{position:absolute;left:0;top:0;bottom:0;background:#ffffff40}
+.seek .fl{position:absolute;left:0;top:0;bottom:0;background:var(--red)}
+.seek .kn{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;box-shadow:0 1px 4px #0008}
+.ctrls{display:flex;align-items:center;gap:2px}
+.ctrls .time{font-size:13px;color:#ffffffd0;margin-left:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctrls .sp{flex:1}
+.ibtn[disabled]{opacity:.35;cursor:default}
+.ibtn[disabled]:hover{background:none}
+
+.hint{position:absolute;left:50%;bottom:110px;transform:translateX(-50%);background:#000000a0;border:1px solid #ffffff30;color:#fff;font-size:13px;padding:6px 14px;border-radius:999px;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .4s}
+.hint.show{opacity:1}
+.toast{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);background:#000000b8;color:#fff;font-weight:700;padding:10px 18px;border-radius:14px;pointer-events:none;opacity:0;transition:opacity .25s;white-space:nowrap}
+.toast.show{opacity:1}
+
+.endcard{position:absolute;z-index:2;inset:0;background:#000000cc;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px;text-align:center}
+.endcard.show{display:flex}
+.endcard .in{width:min(320px,100%)}
+.endcard .lbl{font-size:13px;color:#ffffffb0;letter-spacing:.1em}
+.endcard .nx{margin:14px auto 12px;width:150px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;position:relative;border:1px solid #ffffff30;background:#111}
+.endcard .nx img{width:100%;height:100%;object-fit:cover}
+.endcard .ring{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px}
+.endcard .ring circle{fill:none;stroke-width:5}
+.endcard .ring .bgc{stroke:#ffffff40}
+.endcard .ring .fgc{stroke:#fff;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%}
+.endcard .ring .num{position:absolute;inset:0;display:grid;place-items:center;font-weight:900;font-size:22px}
+.endcard h4{margin:4px 0 2px;font-family:var(--serif);font-weight:900;font-size:22px;line-height:1.4}
+.endcard p{margin:0 0 16px;color:#ffffffb8;font-size:14px}
+.endcard .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+.panel{position:absolute;left:0;right:0;bottom:0;height:min(70dvh,560px);background:#111014;border-top:1px solid #ffffff18;border-radius:18px 18px 0 0;
+  transform:translateY(105%);transition:transform .3s ease;z-index:5;padding-bottom:var(--safe-b);display:flex;flex-direction:column}
+.panel.open{transform:none}
+.panel .ph{padding:18px 18px 10px;border-bottom:1px solid #ffffff10;display:flex;align-items:flex-start;gap:8px}
+.panel .ph>div{flex:1;min-width:0}
+.panel .ph .s{font-size:12px;color:var(--mute)}
+.panel .ph h3{margin:2px 0 0;font-family:var(--serif);font-weight:900;font-size:18px;line-height:1.45}
+.panel .pl{overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.panel .ep{grid-template-columns:56px 1fr auto;padding:8px 10px 8px 8px;gap:12px}
+.panel .ep .th{width:56px}
+.panel .ep .tt{font-size:16px}
+.panel .ep .ds{display:none}
+.panel .ep.cur{border-color:var(--red);background:#2A1A1D}
+@media (min-width:900px) and (orientation:landscape){
+  .panel{position:static;width:380px;flex:none;height:100dvh;transform:none;border-top:0;border-left:1px solid #ffffff12;border-radius:0;padding-bottom:0}
+  .panel .close-sheet{display:none}
+  .ptop .list-btn{display:none}
+}
+@media (max-width:640px){
+  .shero{grid-template-columns:1fr;gap:18px}
+  .shero .cov{max-width:240px;margin:0 auto;aspect-ratio:9/16}
+  .shero .info{text-align:left}
+  .cta .btn{flex:1}
+  .ep{grid-template-columns:64px 1fr auto;gap:12px}
+  .ep .th{width:64px}
+  .ep .tt{font-size:17px}
+  .topbar nav{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#/" aria-label="もしも〇〇ストーリー トップへ"><span class="mo">もしも</span><span class="oo" aria-hidden="true"><i></i><i></i></span><span>ストーリー</span></a>
+    <div class="sp"></div>
+    <nav><a href="#/">ストーリー一覧</a><a href="#about">このサイトについて</a></nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap" id="about">
+    <p><b style="color:var(--sub)">もしも〇〇ストーリー</b>｜史実をもとにした「もしも」の世界線を描く、縦型ショート動画のシリーズです。作品はすべてフィクションです。</p>
+    <p>音声：Open JTalk／HTSボイス「Mei」（名古屋工業大学, CC BY 3.0）　地図：国土数値情報（行政区域データ）を加工して作成　BGM・効果音・イラスト：オリジナル</p>
+  </div>
+</footer>
+
+<!-- ============ PLAYER ============ -->
+<div class="player idle" id="player" hidden aria-modal="true" role="dialog" aria-label="動画プレーヤー">
+  <div class="stage" id="stage">
+    <video id="vid" playsinline webkit-playsinline preload="auto"></video>
+    <div class="tap" id="tap"></div>
+    <div class="spin" id="spin"></div>
+    <button class="bigplay" id="bigplay" aria-label="再生"><svg viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></button>
+    <div class="toast" id="toast"></div>
+    <div class="hint" id="hint">上にスワイプで次の話へ</div>
+
+    <div class="ptop ui">
+      <button class="ibtn" id="pclose" aria-label="閉じる"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="ptitle"><div class="s" id="pstory"></div><div class="e" id="pep"></div></div>
+      <button class="ibtn list-btn" id="plist" aria-label="話の一覧"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
+    </div>
+
+    <div class="pbot ui">
+      <div class="seek" id="seek" role="slider" aria-label="再生位置" tabindex="0"><div class="tr"><div class="bf" id="sbf"></div><div class="fl" id="sfl"></div></div><div class="kn" id="skn"></div></div>
+      <div class="ctrls">
+        <button class="ibtn" id="pprev" aria-label="前の話"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 5h2.4v14H6zM20 5v14L9.5 12z"/></svg></button>
+        <button class="ibtn" id="pplay" aria-label="再生／一時停止"><svg viewBox="0 0 24 24" fill="#fff" id="pplayIco"><path d="M7 4.5v15l13-7.5z"/></svg></button>
+        <button class="ibtn" id="pnext" aria-label="次の話"><svg viewBox="0 0 24 24" fill="#fff"><path d="M15.6 5H18v14h-2.4zM4 5v14l10.5-7z"/></svg></button>
+        <span class="time" id="ptime">0:00 / 0:00</span>
+        <span class="sp"></span>
+        <button class="ibtn" id="pmute" aria-label="ミュート切り替え"><svg viewBox="0 0 24 24" fill="#fff" id="pmuteIco"></svg></button>
+        <button class="ibtn" id="pfs" aria-label="全画面"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      </div>
+    </div>
+
+    <div class="endcard" id="endcard"><div class="in" id="endin"></div></div>
+  </div>
+  <aside class="panel" id="panel" aria-label="話の一覧">
+    <div class="ph"><div><div class="s">エピソード</div><h3 id="paneltitle"></h3></div>
+      <button class="ibtn close-sheet" id="panelclose" aria-label="一覧を閉じる"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="pl" id="panellist"></div>
+  </aside>
+</div>
+
+<script>
+/* =====================================================================
+   作品データ：新しい話ができたら episodes に追加するだけで反映されます
+   ===================================================================== */
+const STORIES = [
+  {
+    id: "aum",
+    title: "もしもオウム真理教が生き残っていたら",
+    cover: "posters/aum/cover.jpg",
+    status: "連載中",            // 完結したら "完結"
+    total: 5,
+    era: "1999年・東京",
+    synopsis: "1995年3月、地下鉄サリン事件。史実では、教団は強制捜査で崩壊へ向かった。——だが、もしこの捜査が空振りに終わっていたら？ 1999年夏の東京を舞台に、看護師の美咲と兄・健一、そして母の家族を描く全5話のIFストーリー。",
+    note: "この作品は史実をもとにしたフィクションです。1995年3月22日以降の出来事と登場人物は架空のものです。地下鉄サリン事件の被害者の中には、今も後遺症に苦しむ方がいます。",
+    cast: [
+      { name: "美咲（みさき）", img: "img/chara_misaki.jpg", desc: "都内の病院で働く看護師。夏なのに増え続ける高熱の患者に、最初に気づく。" },
+      { name: "健一（けんいち）", img: "img/chara_kenichi.jpg", desc: "美咲の兄。大手町の会社員。電車が止まり、歩いて川口の家を目指す。" },
+      { name: "母", img: "img/chara_mom.jpg", desc: "埼玉県川口市の実家で、ふたりの子の帰りを待つ。" }
+    ],
+    episodes: [
+      { no: 1, title: "予言の夏", src: "videos/aum/ep01.mp4", poster: "posters/aum/ep01.jpg", dur: "2:17",
+        desc: "1999年7月。都内の病院で働く美咲は、夏なのに増え続ける高熱の患者に気づく。" },
+      { no: 2, title: "封鎖", src: "videos/aum/ep02.mp4", poster: "posters/aum/ep02.jpg", dur: "2:15",
+        desc: "電車が全線で止まった夜。歩いて家を目指す兄・健一の前で、荒川の橋が封鎖される。" },
+      { no: 3, title: "72時間", src: "videos/aum/ep03.mp4", poster: "posters/aum/ep03.jpg", dur: "2:08",
+        desc: "トリアージ、避難所、そして高熱。封鎖の期限が迫るなか、兄妹は病院で再会する。" },
+      { no: 4, title: "追跡", soon: true, desc: "元信者からの通報。隠れ施設を追う捜査が始まる。" },
+      { no: 5, title: "夜明け", soon: true, desc: "最終話。" }
+    ]
+  }
+];
+
+/* ---------------- utilities ---------------- */
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmt = t => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0"); };
+const story = id => STORIES.find(s => s.id === id);
+const avail = s => s.episodes.filter(e => !e.soon);
+const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg>';
+
+/* progress (per viewer, per browser) */
+const KEY = "moshimo-stories.v1";
+function loadAll() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+function saveAll(o) { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} }
+function prog(sid) { const a = loadAll(); return a[sid] || { last: null, eps: {} }; }
+function setProg(sid, no, t, dur, done) {
+  const a = loadAll(); const p = a[sid] || { last: null, eps: {} };
+  const e = p.eps[no] || {};
+  e.t = t; if (dur) e.d = dur; if (done) e.done = true;
+  p.eps[no] = e; p.last = no; a[sid] = p; saveAll(a);
+}
+function resumePoint(s) {
+  const p = prog(s.id); const eps = avail(s);
+  if (!p.last) return null;
+  const e = p.eps[p.last] || {};
+  if (e.done || (e.d && e.t > e.d - 6)) {
+    const nx = eps.find(x => x.no > p.last && !(p.eps[x.no] || {}).done);
+    return nx ? { no: nx.no, t: 0 } : null;
+  }
+  return e.t > 3 ? { no: p.last, t: e.t } : { no: p.last, t: 0 };
+}
+
+/* ---------------- router ---------------- */
+let suppress = false;
+function go(hash, opts = {}) {
+  if (location.hash !== hash) { suppress = true; location.hash = hash; }
+  route(opts);
+}
+window.addEventListener("hashchange", () => { if (suppress) { suppress = false; return; } route({}); });
+function route(opts = {}) {
+  const m = location.hash.match(/^#\/s\/([\w-]+)(?:\/(\d+))?/);
+  if (m && story(m[1])) {
+    const s = story(m[1]);
+    if (!m[2]) { Player.close(true); renderStory(s); return; }
+    const no = +m[2];
+    if (!$("#app").dataset.story || $("#app").dataset.story !== s.id) renderStory(s);
+    Player.open(s, no, opts);
+    return;
+  }
+  Player.close(true);
+  renderHome();
+  if (location.hash === "#about") $("#about").scrollIntoView();
+}
+
+/* ---------------- views ---------------- */
+const CITY = (() => {
+  let x = -20, r = 7, out = "";
+  const rnd = () => (r = (r * 9301 + 49297) % 233280) / 233280;
+  while (x < 1220) {
+    const w = 40 + rnd() * 70, h = 60 + rnd() * 200;
+    out += `<rect x="${x.toFixed(0)}" y="${(300 - h).toFixed(0)}" width="${w.toFixed(0)}" height="${h.toFixed(0)}" fill="#141117"/>`;
+    for (let yy = 300 - h + 10; yy < 290; yy += 24) for (let xx = x + 6; xx < x + w - 8; xx += 16) if (rnd() < .15) out += `<rect x="${xx.toFixed(0)}" y="${yy.toFixed(0)}" width="6" height="10" fill="#E9B861" opacity="${(.3 + rnd() * .4).toFixed(2)}"/>`;
+    x += w + 2 + rnd() * 12;
+  }
+  return `<svg class="city" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">${out}</svg>`;
+})();
+
+function renderHome() {
+  const app = $("#app"); app.dataset.story = "";
+  const latest = [];
+  STORIES.forEach(s => { const a = avail(s); if (a.length) latest.push({ s, e: a[a.length - 1] }); });
+  const l = latest[0];
+  app.innerHTML = `
+  <div class="hero">${CITY}
+    <div class="wrap">
+      <div class="kicker" aria-hidden="true">もしも</div>
+      <h1><span class="vh">もしも〇〇</span><span class="oo" aria-hidden="true"><i></i><i></i></span>ストーリー</h1>
+      <div class="bar"></div>
+      <p>史実をもとにした「もしも」の世界線を、縦型ショート動画で。<br>ストーリーを選んで、第1話から一気に見られます。</p>
+      ${l ? `<div class="latest"><b>最新話</b><span>${esc(l.s.title)}　第${l.e.no}話「${esc(l.e.title)}」</span><button data-play="${l.s.id}" data-no="${l.e.no}">見る</button></div>` : ""}
+    </div>
+  </div>
+  <section><div class="wrap">
+    <div class="sec-h"><h2>ストーリーを選ぶ</h2><small>${STORIES.length}作品</small></div>
+    <div class="grid">
+      ${STORIES.map(s => {
+        const a = avail(s), done = s.status === "完結";
+        return `<article class="scard">
+          <a class="cov" href="#/s/${s.id}" aria-label="${esc(s.title)}の詳細"><img src="${s.cover}" alt="" loading="lazy">
+            <div class="badges"><span class="badge ${done ? "green" : "red"}">${esc(s.status)}</span><span class="badge">全${s.total}話中 ${a.length}話公開</span></div></a>
+          <div class="body">
+            <h3><a href="#/s/${s.id}">${esc(s.title)}</a></h3>
+            <p>${esc(s.era)}｜1話 約2分</p>
+            <div class="acts">
+              <button class="btn primary wide" data-play="${s.id}" data-no="${a[0] ? a[0].no : 1}">${ICON_PLAY}第1話から見る</button>
+              <a class="btn ghost" href="#/s/${s.id}">話一覧</a>
+            </div>
+          </div></article>`;
+      }).join("")}
+      <div class="scard soon"><div><div class="oo"><i></i><i></i></div>次の「もしも」を準備中…</div></div>
+    </div>
+  </div></section>`;
+  window.scrollTo(0, 0);
+}
+
+function epRow(s, e, cur) {
+  const p = prog(s.id).eps[e.no] || {};
+  const pct = p.d ? Math.min(100, (p.t / p.d) * 100) : 0;
+  if (e.soon) return `<div class="ep soon" aria-disabled="true"><div class="th"><b>近日公開</b></div>
+      <div><div class="no">第${e.no}話</div><div class="tt">「${esc(e.title)}」</div><div class="ds">${esc(e.desc || "")}</div></div>
+      <div class="rt"><span class="badge">近日公開</span></div></div>`;
+  return `<button class="ep${cur === e.no ? " cur" : ""}" data-play="${s.id}" data-no="${e.no}" aria-label="第${e.no}話「${esc(e.title)}」を再生">
+      <div class="th"><img src="${e.poster}" alt="" loading="lazy">${pct > 1 && !p.done ? `<div class="pbar"><i style="width:${pct.toFixed(1)}%"></i></div>` : ""}
+        <div class="play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M7 4.5v15l13-7.5z"/></svg></div></div>
+      <div><div class="no">第${e.no}話</div><div class="tt">「${esc(e.title)}」</div><div class="ds">${esc(e.desc || "")}</div></div>
+      <div class="rt"><span>${esc(e.dur || "")}</span>${p.done ? '<span class="done">✓ 視聴済み</span>' : ""}</div></button>`;
+}
+
+function renderStory(s) {
+  const app = $("#app"); app.dataset.story = s.id;
+  const a = avail(s), rp = resumePoint(s), done = s.status === "完結";
+  const rpEp = rp && s.episodes.find(e => e.no === rp.no);
+  app.innerHTML = `
+  <div class="wrap">
+    <a class="back" href="#/"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>ストーリー一覧</a>
+    <div class="shero">
+      <div class="cov"><img src="${s.cover}" alt=""></div>
+      <div class="info">
+        <h1>${esc(s.title)}</h1>
+        <div class="meta"><span class="badge ${done ? "green" : "red"}">${esc(s.status)}</span><span class="badge">全${s.total}話中 ${a.length}話公開</span><span class="badge">${esc(s.era)}</span><span class="badge">1話 約2分</span></div>
+        <p class="syn">${esc(s.synopsis)}</p>
+        <p class="note">${esc(s.note)}</p>
+        <div class="cta">
+          <button class="btn primary" data-play="${s.id}" data-no="${a[0] ? a[0].no : 1}" data-from="start">${ICON_PLAY}第1話から見る</button>
+          ${rpEp && !(rp.no === 1 && rp.t === 0) ? `<button class="btn ghost" data-play="${s.id}" data-no="${rp.no}" data-resume="1">続きから見る（第${rp.no}話${rp.t > 0 ? " " + fmt(rp.t) + "〜" : ""}）</button>` : ""}
+          <button class="btn ghost" id="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14"/></svg>シェア</button>
+        </div>
+      </div>
+    </div>
+    <section style="padding-top:28px">
+      <div class="sec-h"><h2>エピソード</h2><small>全${s.total}話</small></div>
+      <div class="eps">${s.episodes.map(e => epRow(s, e)).join("")}</div>
+    </section>
+    ${s.cast && s.cast.length ? `<section style="padding-top:8px">
+      <div class="sec-h"><h2>登場人物</h2></div>
+      <div class="cast">${s.cast.map(c => `<div class="chara"><img src="${c.img}" alt="" loading="lazy"><div><b>${esc(c.name)}</b><span>${esc(c.desc)}</span></div></div>`).join("")}</div>
+    </section>` : ""}
+  </div>`;
+  $("#share").addEventListener("click", async () => {
+    const url = location.href.split("#")[0] + "#/s/" + s.id;
+    try {
+      if (navigator.share) { await navigator.share({ title: s.title + "｜もしも〇〇ストーリー", url }); return; }
+      await navigator.clipboard.writeText(url); flash($("#share"), "リンクをコピーしました");
+    } catch (e) {}
+  });
+  window.scrollTo(0, 0);
+}
+function flash(btn, msg) { const o = btn.innerHTML; btn.textContent = msg; setTimeout(() => btn.innerHTML = o, 1600); }
+
+/* delegated clicks: anything with data-play opens the player inside the user gesture */
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-play]");
+  if (!b) return;
+  ev.preventDefault();
+  const sid = b.dataset.play, no = +b.dataset.no;
+  const opts = { gesture: true };
+  if (b.dataset.resume) opts.resume = true;
+  if (b.dataset.from === "start") opts.fromStart = true;
+  if (b.closest("#panel")) { Player.load(story(sid), no, { gesture: true, fromStart: true }); return; }
+  go(`#/s/${sid}/${no}`, opts);
+});
+
+/* ---------------- player ---------------- */
+const Player = (() => {
+  const el = $("#player"), v = $("#vid"), stage = $("#stage");
+  let S = null, E = null, idleT = 0, saveT = 0, cdT = 0, dragging = false, opened = false, wasGesture = false;
+  const ICON = {
+    play: '<path d="M7 4.5v15l13-7.5z"/>',
+    pause: '<path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/>',
+    vol: '<path d="M4 9.5h4L13 5v14l-5-4.5H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+    mute: '<path d="M4 9.5h4L13 5v14l-5-4.5H4z"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>'
+  };
+  let lastVol = 1;
+
+  function poke() {
+    el.classList.remove("idle"); clearTimeout(idleT);
+    idleT = setTimeout(() => { if (!v.paused && !dragging && !$("#panel").classList.contains("open")) el.classList.add("idle"); }, 2600);
+  }
+  function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove("show"), 900); }
+  function setPlayIcon() { $("#pplayIco").innerHTML = v.paused ? ICON.play : ICON.pause; $("#bigplay").classList.toggle("show", v.paused && !$("#endcard").classList.contains("show")); }
+  function setMuteIcon() { $("#pmuteIco").innerHTML = v.muted || v.volume === 0 ? ICON.mute : ICON.vol; }
+  function nextOf(no) { return S.episodes.find(e => e.no === no + 1) || null; }
+  function prevOf(no) { return avail(S).filter(e => e.no < no).pop() || null; }
+
+  function renderPanel() {
+    $("#paneltitle").textContent = S.title;
+    $("#panellist").innerHTML = S.episodes.map(e => epRow(S, e, E.no)).join("");
+  }
+  function updateMeta() {
+    $("#pstory").textContent = S.title;
+    $("#pep").textContent = `第${E.no}話「${E.title}」`;
+    document.title = `第${E.no}話「${E.title}」｜${S.title}｜もしも〇〇ストーリー`;
+    const nx = nextOf(E.no);
+    $("#pnext").disabled = !nx || !!nx.soon;
+    $("#pprev").disabled = !prevOf(E.no);
+    if ("mediaSession" in navigator) {
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: `第${E.no}話「${E.title}」`, artist: S.title, album: "もしも〇〇ストーリー",
+          artwork: [{ src: new URL(E.poster, location.href).href, sizes: "720x1280", type: "image/jpeg" }] });
+        navigator.mediaSession.setActionHandler("nexttrack", nx && !nx.soon ? () => load(S, nx.no, { gesture: true, fromStart: true }) : null);
+        navigator.mediaSession.setActionHandler("previoustrack", prevOf(E.no) ? () => load(S, prevOf(E.no).no, { gesture: true, fromStart: true }) : null);
+      } catch (e) {}
+    }
+  }
+
+  function load(s, no, opts = {}) {
+    let ep = s.episodes.find(e => e.no === no && !e.soon) || avail(s)[0];
+    if (!ep) return;
+    hideEnd();
+    S = s; E = ep;
+    if (location.hash !== `#/s/${s.id}/${ep.no}`) { suppress = true; history.replaceState(null, "", `#/s/${s.id}/${ep.no}`); suppress = false; }
+    const p = prog(s.id).eps[ep.no] || {};
+    let start = 0;
+    if (!opts.fromStart && p.t > 3 && !(p.d && p.t > p.d - 6) && !p.done) start = p.t;
+    if (opts.resume && p.t) start = p.t;
+    if (v.getAttribute("src") !== ep.src) { v.src = ep.src; v.poster = ep.poster; }
+    const seekTo = () => { try { if (start > 0 && start < (v.duration || 1e9) - 2) v.currentTime = start; } catch (e) {} };
+    if (v.readyState >= 1) seekTo(); else v.addEventListener("loadedmetadata", seekTo, { once: true });
+    updateMeta(); renderPanel(); setPlayIcon(); updateTime();
+    if (opts.gesture || wasGesture) {
+      const pr = v.play();
+      if (pr && pr.catch) pr.catch(() => { setPlayIcon(); $("#bigplay").classList.add("show"); });
+    } else { $("#bigplay").classList.add("show"); }
+    poke();
+    if (ep.no === avail(s)[0].no && !localStorageFlag("hint")) { const h = $("#hint"); h.textContent = (matchMedia("(pointer: coarse)").matches || navigator.maxTouchPoints > 0) ? "上にスワイプで次の話へ" : "キーボードの ↓ で次の話へ"; setTimeout(() => h.classList.add("show"), 1500); setTimeout(() => h.classList.remove("show"), 5000); localStorageFlag("hint", 1); }
+  }
+  function localStorageFlag(k, val) { try { if (val) localStorage.setItem(KEY + "." + k, "1"); return localStorage.getItem(KEY + "." + k); } catch (e) { return null; } }
+
+  function open(s, no, opts = {}) {
+    if (opts.gesture) wasGesture = true;
+    if (!opened) { el.hidden = false; document.body.classList.add("lock"); opened = true; }
+    if (!E || S.id !== s.id || E.no !== no || v.getAttribute("src") == null || opts.fromStart || opts.resume) load(s, no, opts);
+    else if (opts.gesture && v.paused) v.play().catch(() => {});
+  }
+  function close(silent) {
+    if (!opened) return;
+    save(true);
+    v.pause(); hideEnd(); $("#panel").classList.remove("open");
+    el.hidden = true; document.body.classList.remove("lock"); opened = false;
+    document.title = "もしも〇〇ストーリー";
+    if (!silent) go(`#/s/${S.id}`);
+    else if (S && $("#app").dataset.story === S.id) renderStory(S);
+  }
+
+  function save(force) {
+    if (!S || !E || !v.duration) return;
+    const now = Date.now();
+    if (!force && now - saveT < 2000) return;
+    saveT = now;
+    setProg(S.id, E.no, v.currentTime, v.duration, v.duration - v.currentTime < 6);
+  }
+  function updateTime() {
+    const d = v.duration || 0, t = v.currentTime || 0;
+    $("#ptime").textContent = `${fmt(t)} / ${fmt(d)}`;
+    const pct = d ? (t / d) * 100 : 0;
+    $("#sfl").style.width = pct + "%"; $("#skn").style.left = pct + "%";
+    let bf = 0; try { if (v.buffered.length) bf = v.buffered.end(v.buffered.length - 1); } catch (e) {}
+    $("#sbf").style.width = (d ? (bf / d) * 100 : 0) + "%";
+  }
+
+  function hideEnd() { clearInterval(cdT); $("#endcard").classList.remove("show"); }
+  function showEnd() {
+    const nx = nextOf(E.no), box = $("#endin");
+    $("#endcard").classList.add("show"); $("#bigplay").classList.remove("show");
+    el.classList.remove("idle");
+    if (nx && !nx.soon) {
+      let n = 5; const C = 2 * Math.PI * 28;
+      box.innerHTML = `<div class="lbl">次の話</div>
+        <div class="nx"><img src="${nx.poster}" alt=""><svg class="ring" viewBox="0 0 64 64"><circle class="bgc" cx="32" cy="32" r="28"/><circle class="fgc" id="ringfg" cx="32" cy="32" r="28" stroke-dasharray="${C}" stroke-dashoffset="0"/></svg><div class="ring"><div class="num" id="ringnum">5</div></div></div>
+        <h4>第${nx.no}話「${esc(nx.title)}」</h4><p>${esc(nx.desc || "")}</p>
+        <div class="row"><button class="btn primary" id="endgo">${ICON_PLAY}今すぐ見る</button><button class="btn ghost" id="endstop">キャンセル</button></div>`;
+      const fg = $("#ringfg"), num = $("#ringnum"); const t0 = Date.now();
+      cdT = setInterval(() => {
+        const el2 = (Date.now() - t0) / 1000; const left = Math.max(0, 5 - el2);
+        fg.style.strokeDashoffset = (C * (el2 / 5)).toFixed(1); num.textContent = Math.ceil(left);
+        if (left <= 0) { clearInterval(cdT); load(S, nx.no, { gesture: true, fromStart: true }); }
+      }, 100);
+      $("#endgo").onclick = () => load(S, nx.no, { gesture: true, fromStart: true });
+      $("#endstop").onclick = () => { clearInterval(cdT); $("#ringnum").textContent = "—"; $("#endstop").textContent = "一覧に戻る"; $("#endstop").onclick = () => close(false); };
+    } else if (nx && nx.soon) {
+      box.innerHTML = `<div class="lbl">次回</div><h4 style="margin-top:12px">第${nx.no}話「${esc(nx.title)}」</h4><p>近日公開。お楽しみに！</p>
+        <div class="row"><button class="btn ghost" id="endagain">もう一度見る</button><button class="btn primary" id="endback">話一覧へ</button></div>`;
+      $("#endagain").onclick = () => { hideEnd(); v.currentTime = 0; v.play().catch(() => {}); };
+      $("#endback").onclick = () => close(false);
+    } else {
+      box.innerHTML = `<div class="lbl">${S.status === "完結" ? "完結" : "ここまで公開中"}</div><h4 style="margin-top:12px">${esc(S.title)}</h4><p>最後までご覧いただきありがとうございました。</p>
+        <div class="row"><button class="btn ghost" id="endagain">第1話から見る</button><button class="btn primary" id="endback">一覧へ</button></div>`;
+      $("#endagain").onclick = () => load(S, avail(S)[0].no, { gesture: true, fromStart: true });
+      $("#endback").onclick = () => { close(true); go("#/"); };
+    }
+  }
+
+  function toggle() { if (v.paused) { hideEnd(); v.play().catch(() => {}); } else v.pause(); }
+  function step(d) {
+    const tgt = d > 0 ? nextOf(E.no) : prevOf(E.no);
+    if (!tgt || tgt.soon) { toast(d > 0 ? "次の話は近日公開" : "これが第1話です"); return; }
+    load(S, tgt.no, { gesture: true, fromStart: true }); toast(`第${tgt.no}話「${tgt.title}」`);
+  }
+
+  /* events */
+  v.addEventListener("play", () => { setPlayIcon(); poke(); });
+  v.addEventListener("pause", () => { setPlayIcon(); poke(); save(true); });
+  v.addEventListener("timeupdate", () => { if (!dragging) updateTime(); save(); });
+  v.addEventListener("progress", updateTime);
+  v.addEventListener("loadedmetadata", updateTime);
+  v.addEventListener("waiting", () => $("#spin").classList.add("show"));
+  ["playing", "canplay", "pause"].forEach(n => v.addEventListener(n, () => $("#spin").classList.remove("show")));
+  v.addEventListener("volumechange", setMuteIcon);
+  v.addEventListener("ended", () => { save(true); setProg(S.id, E.no, v.duration, v.duration, true); showEnd(); });
+  v.addEventListener("error", () => toast("動画を読み込めませんでした"));
+
+  $("#bigplay").addEventListener("click", () => { wasGesture = true; toggle(); });
+  $("#pplay").addEventListener("click", () => { wasGesture = true; toggle(); poke(); });
+  $("#pnext").addEventListener("click", () => step(1));
+  $("#pprev").addEventListener("click", () => step(-1));
+  $("#pclose").addEventListener("click", () => close(false));
+  $("#pmute").addEventListener("click", () => { if (v.muted || v.volume === 0) { v.muted = false; v.volume = lastVol || 1; } else { lastVol = v.volume; v.muted = true; } poke(); });
+  const canFS = !!(el.requestFullscreen || el.webkitRequestFullscreen);
+  if (!canFS) $("#pfs").style.display = "none";
+  $("#pfs").addEventListener("click", () => {
+    const d = document;
+    if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
+    else (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+  });
+  $("#plist").addEventListener("click", () => { $("#panel").classList.add("open"); poke(); });
+  $("#panelclose").addEventListener("click", () => $("#panel").classList.remove("open"));
+  el.addEventListener("mousemove", poke);
+
+  /* tap / swipe on the video */
+  const tap = $("#tap"); let ts = null;
+  tap.addEventListener("pointerdown", e => { ts = { x: e.clientX, y: e.clientY, t: Date.now() }; });
+  tap.addEventListener("pointerup", e => {
+    if (!ts) return;
+    const dx = e.clientX - ts.x, dy = e.clientY - ts.y, dt = Date.now() - ts.t; ts = null;
+    if ($("#panel").classList.contains("open")) { $("#panel").classList.remove("open"); return; }
+    if (Math.abs(dy) > 70 && Math.abs(dy) > Math.abs(dx) * 1.5 && dt < 800) { step(dy < 0 ? 1 : -1); return; }
+    if (Math.abs(dx) < 12 && Math.abs(dy) < 12) {
+      if (el.classList.contains("idle") && !v.paused) { poke(); return; }
+      toggle(); poke();
+    }
+  });
+  tap.addEventListener("pointercancel", () => { ts = null; });
+
+  /* seek bar */
+  const seek = $("#seek");
+  function seekAt(x) { const r = seek.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (x - r.left) / r.width)); if (v.duration) { v.currentTime = p * v.duration; updateTime(); } }
+  seek.addEventListener("pointerdown", e => { dragging = true; seek.classList.add("drag"); seek.setPointerCapture(e.pointerId); seekAt(e.clientX); poke(); });
+  seek.addEventListener("pointermove", e => { if (dragging) seekAt(e.clientX); });
+  seek.addEventListener("pointerup", () => { dragging = false; seek.classList.remove("drag"); poke(); });
+  seek.addEventListener("keydown", e => { if (e.key === "ArrowRight") { v.currentTime += 5; e.preventDefault(); } if (e.key === "ArrowLeft") { v.currentTime -= 5; e.preventDefault(); } });
+
+  /* keyboard */
+  document.addEventListener("keydown", e => {
+    if (!opened || e.target.closest("input,textarea")) return;
+    const k = e.key;
+    if (k === " " || k === "k" || k === "K") { e.preventDefault(); wasGesture = true; toggle(); poke(); }
+    else if (k === "ArrowRight" && e.target !== seek) { v.currentTime = Math.min(v.duration || 0, v.currentTime + 5); toast("＋5秒"); poke(); }
+    else if (k === "ArrowLeft" && e.target !== seek) { v.currentTime = Math.max(0, v.currentTime - 5); toast("−5秒"); poke(); }
+    else if (k === "ArrowDown" || k === "n" || k === "N") { e.preventDefault(); step(1); }
+    else if (k === "ArrowUp" || k === "p" || k === "P") { e.preventDefault(); step(-1); }
+    else if (k === "m" || k === "M") $("#pmute").click();
+    else if (k === "f" || k === "F") { if (canFS) $("#pfs").click(); }
+    else if (k === "Escape") { if ($("#panel").classList.contains("open")) $("#panel").classList.remove("open"); else if (!document.fullscreenElement) close(false); }
+  });
+  window.addEventListener("pagehide", () => save(true));
+  document.addEventListener("visibilitychange", () => { if (document.hidden) save(true); });
+  setMuteIcon();
+  return { open, close, load };
+})();
+
+route({});
+</script>
+</body>
+</html>
