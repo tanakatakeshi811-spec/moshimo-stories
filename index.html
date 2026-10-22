@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>もしも〇〇ストーリー</title>
-<meta name="description" content="史実をもとにした「もしも」の世界線を、縦型ショート動画で。ストーリーを選んで第1話から見られます。">
+<meta name="description" content="「もしも」の世界線を、縦型ショート動画で。ストーリーを選んで第1話から見られます。">
 <meta name="theme-color" content="#0E0D10">
 <meta property="og:type" content="website">
 <meta property="og:title" content="もしも〇〇ストーリー">
-<meta property="og:description" content="史実をもとにした「もしも」の世界線を、縦型ショート動画で。">
+<meta property="og:description" content="「もしも」の世界線を、縦型ショート動画で。">
 <meta property="og:url" content="https://tanakatakeshi811-spec.github.io/moshimo-stories/">
 <meta property="og:image" content="https://tanakatakeshi811-spec.github.io/moshimo-stories/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -236,7 +236,7 @@ footer p{margin:4px 0}
 
 <footer>
   <div class="wrap" id="about">
-    <p><b style="color:var(--sub)">もしも〇〇ストーリー</b>｜史実をもとにした「もしも」の世界線を描く、縦型ショート動画のシリーズです。作品はすべてフィクションです。</p>
+    <p><b style="color:var(--sub)">もしも〇〇ストーリー</b>｜「もしも」の世界線を描く、縦型ショート動画のシリーズです。作品はすべてフィクションです。</p>
     <p>音声：Open JTalk／HTSボイス「Mei」（名古屋工業大学, CC BY 3.0）　地図：国土数値情報（行政区域データ）を加工して作成　BGM・効果音・イラスト：オリジナル</p>
   </div>
 </footer>
@@ -310,6 +310,28 @@ const STORIES = [
       { no: 5, title: "夜明け", src: "videos/aum/ep05.mp4", poster: "posters/aum/ep05.jpg", dur: "1:36",
         desc: "夜明け前の突入。足取りの果てに待っていた結末と、取り戻された日常。" }
     ]
+  },
+  {
+    id: "asu",
+    title: "もしも「明日の日記」があと3日分しかなかったら",
+    cover: "posters/asu/cover.jpg",
+    status: "連載中",
+    total: 3,
+    era: "現代・東京",
+    eplen: "約3〜4分",
+    synopsis: "月曜の夜、日記アプリ「アシタ日記」に届いた通知は「明日の日記ができました」。そこには、まだ起きていない火曜日の出来事が書かれていた。牛乳をこぼす朝、母からの電話、にわか雨、斜めになった玄関のマット——全部、当たる。AIが書いた“予告”は、あと3日分。在宅Webデザイナーの小夜を描く、全3話のホラー×サスペンス。",
+    note: "この作品は完全なフィクションです。登場する人物・アプリ・出来事はすべて架空のものです。",
+    cast: [
+      { name: "小夜（さよ）", img: "img/chara_sayo.jpg", desc: "27歳。在宅で働くWebデザイナー。3か月前に今のマンションへ引っ越してきた。" },
+      { name: "彩（あや）", img: "img/chara_aya.jpg", desc: "小夜の友人。「アシタ日記」をすすめた張本人。明るくて、少しおせっかい。" },
+      { name: "アシタ日記", img: "img/chara_ai.jpg", desc: "毎晩、その日の出来事を日記にしてくれるAIアプリ。……のはずだった。" }
+    ],
+    episodes: [
+      { no: 1, title: "あと3日分", src: "videos/asu/ep01.mp4", poster: "posters/asu/ep01.jpg", dur: "3:46",
+        desc: "月曜の夜、「明日の日記」の通知が届く。書かれていたのは、まだ起きていない火曜日のこと。" },
+      { no: 2, title: "午前2時14分", soon: true, desc: "水曜の日記に書かれていた「午前2時14分」。小夜は、その瞬間を待つことにした。" },
+      { no: 3, title: "予測は、外すためにある", soon: true, desc: "金曜日、午後11時23分。日記はそこで途切れている。続きを書くのは——。" }
+    ]
   }
 ];
 
@@ -382,14 +404,14 @@ function renderHome() {
   const app = $("#app"); app.dataset.story = "";
   const latest = [];
   STORIES.forEach(s => { const a = avail(s); if (a.length) latest.push({ s, e: a[a.length - 1] }); });
-  const l = latest[0];
+  const l = latest[latest.length - 1];
   app.innerHTML = `
   <div class="hero">${CITY}
     <div class="wrap">
       <div class="kicker" aria-hidden="true">もしも</div>
       <h1><span class="vh">もしも〇〇</span><span class="oo" aria-hidden="true"><i></i><i></i></span>ストーリー</h1>
       <div class="bar"></div>
-      <p>史実をもとにした「もしも」の世界線を、縦型ショート動画で。<br>ストーリーを選んで、第1話から一気に見られます。</p>
+      <p>「もしも」の世界線を、縦型ショート動画で。<br>ストーリーを選んで、第1話から一気に見られます。</p>
       ${l ? `<div class="latest"><b>最新話</b><span>${esc(l.s.title)}　第${l.e.no}話「${esc(l.e.title)}」</span><button data-play="${l.s.id}" data-no="${l.e.no}">見る</button></div>` : ""}
     </div>
   </div>
@@ -403,7 +425,7 @@ function renderHome() {
             <div class="badges"><span class="badge ${done ? "green" : "red"}">${esc(s.status)}</span><span class="badge">全${s.total}話中 ${a.length}話公開</span></div></a>
           <div class="body">
             <h3><a href="#/s/${s.id}">${esc(s.title)}</a></h3>
-            <p>${esc(s.era)}｜1話 約2分</p>
+            <p>${esc(s.era)}｜1話 ${esc(s.eplen || "約2分")}</p>
             <div class="acts">
               <button class="btn primary wide" data-play="${s.id}" data-no="${a[0] ? a[0].no : 1}">${ICON_PLAY}第1話から見る</button>
               <a class="btn ghost" href="#/s/${s.id}">話一覧</a>
@@ -440,7 +462,7 @@ function renderStory(s) {
       <div class="cov"><img src="${s.cover}" alt=""></div>
       <div class="info">
         <h1>${esc(s.title)}</h1>
-        <div class="meta"><span class="badge ${done ? "green" : "red"}">${esc(s.status)}</span><span class="badge">全${s.total}話中 ${a.length}話公開</span><span class="badge">${esc(s.era)}</span><span class="badge">1話 約2分</span></div>
+        <div class="meta"><span class="badge ${done ? "green" : "red"}">${esc(s.status)}</span><span class="badge">全${s.total}話中 ${a.length}話公開</span><span class="badge">${esc(s.era)}</span><span class="badge">1話 ${esc(s.eplen || "約2分")}</span></div>
         <p class="syn">${esc(s.synopsis)}</p>
         <p class="note">${esc(s.note)}</p>
         <div class="cta">
